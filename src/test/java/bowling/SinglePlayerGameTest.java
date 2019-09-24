@@ -17,9 +17,6 @@ public class SinglePlayerGameTest {
 		game = new SinglePlayerGame();
 	}
 
-	/**
-	 * Si on envoie toutes les 20 boules dans la rigole, le score final est 0
-	 */
 	@Test
 	public void testGutterGame() {
 		rollMany(20, 0);
