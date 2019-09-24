@@ -67,9 +67,9 @@ public class Tour {
      **/
     public int pointOfStrike(){
         if (strike()) {
-		return premierL;
+            return premierL;
 	} else {
-		return premierL + deuxiemeL;
+            return premierL + deuxiemeL;
 	}
     }
     
@@ -86,37 +86,34 @@ public class Tour {
      * @return 
      **/
     public int score() {
-		int ScoreJoueur = 0;
-		if (strike()) {
-			ScoreJoueur = 10 + tourSuivant.pointOfStrike();
-		}
-                else if (spare()) {
-			ScoreJoueur = 10 + tourSuivant.pointOfSpare();
-		} else {
-			ScoreJoueur = premierL + deuxiemeL;
-		}
-	return ScoreJoueur + tourSuivant.score();
+        int ScoreJoueur = 0;
+        if (strike()) {
+            ScoreJoueur = 10 + tourSuivant.pointOfStrike();
+        } else if (spare()) {
+            ScoreJoueur = 10 + tourSuivant.pointOfSpare();
+	} else {
+            ScoreJoueur = premierL + deuxiemeL;
 	}
+        return ScoreJoueur + tourSuivant.score();
+    }
     
     /**
      * 
      * @param NumeroLancee
      **/
     public void Lancer(int NumeroLancee) {
-                bouleLancee=0;
-                
-                if (bouleLancee > 1) {
-			throw new UnsupportedOperationException();
-		}
-                
-		bouleLancee++;
-		switch (bouleLancee) {
-                    case 1:
-			premierL = NumeroLancee;
-			break;
-                    case 2:
-			deuxiemeL = NumeroLancee;
-                        break;
-		}
+        bouleLancee=0;
+        if (bouleLancee > 1) {
+            throw new UnsupportedOperationException();
 	}
+	bouleLancee++;
+	switch (bouleLancee) {
+            case 1:
+		premierL = NumeroLancee;
+		break;
+            case 2:
+		deuxiemeL = NumeroLancee;
+                break;
+        }
+    }
 }
