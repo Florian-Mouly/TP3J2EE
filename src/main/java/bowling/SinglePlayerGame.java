@@ -70,7 +70,5 @@ public class SinglePlayerGame {
 	 */
 	public int score() {
             return score;
-	}
-        
-        
+        }      
 }
