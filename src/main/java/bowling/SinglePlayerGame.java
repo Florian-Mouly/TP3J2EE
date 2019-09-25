@@ -6,18 +6,16 @@ package bowling;
  * final de ce joueur
  */
 public class SinglePlayerGame {
-    
-        public int tour;
-        public Boolean premierLancee;
-        public Boolean deuxiemeLancee;
-        public int tourTotal = 10;
-        public int scoreTotal;
+        
+        public int score=0;   
+        public int spare=10;
+        public int nombreLancee =0;
+        public int strike=0;    
 	/**
 	 * Constructeur
 	 */
 	public SinglePlayerGame() {
-            tour = 0;
-            deuxiemeLancee = false;
+            
         }
 
 	/**
@@ -27,14 +25,42 @@ public class SinglePlayerGame {
 	 * ce lancé
 	 */
 	public void lancer(int nombreDeQuillesAbattues) {
+            if (nombreLancee==2){
+                nombreLancee=0;
+            }
+            nombreLancee+=1;
             
-            //Strinke
-            //if (nombreDeQuillesAbattues == 10 && premierLancee == false){
-            //    deuxiemeLancee = false;
-            //    premierLancee = true;
-            //    scoreTotal = score()+20; 
-            //} else if (premierLancee = true){        
-            //}
+            //lancer sans strike
+            if (nombreDeQuillesAbattues < 10){
+                
+                if (spare==0){
+                    score+= nombreDeQuillesAbattues *2;
+                } else if (strike > 0) {
+                    strike-=1;                    
+                    score+= nombreDeQuillesAbattues *2;
+                } else {
+                    spare-=nombreDeQuillesAbattues;
+                    score+= nombreDeQuillesAbattues;
+                }
+                if (nombreLancee==2 && spare!=0){
+                    nombreLancee=0;
+                    spare=10;
+                    }
+                }
+            
+            //Strike
+            if (nombreDeQuillesAbattues == 10 && nombreLancee==1 ){
+                if (strike >0){
+                    score+= nombreDeQuillesAbattues*3;
+                } else {
+                    score+= nombreDeQuillesAbattues;
+                }
+                strike=2;
+            }
+            if (nombreDeQuillesAbattues == 10 && nombreLancee==2){
+                spare=0;
+                score+= nombreDeQuillesAbattues;
+            }
 	}
         
 	/**
@@ -43,8 +69,7 @@ public class SinglePlayerGame {
 	 * @return Le score du joueur
 	 */
 	public int score() {
-            
-            throw new UnsupportedOperationException("Pas encore implémenté");
+            return score;
 	}
         
         
